@@ -15,7 +15,7 @@
             {{ professor.nome }} {{ professor.sobrenome }}
           </router-link>          
           <td>
-            3
+            {{ professor.qtdAlunos }}
           </td>
         </tr>
       </tbody>
@@ -35,16 +35,43 @@ export default {
   },
   data() {
     return {
-      professores: []
+      professores: [],
+      alunos: []
     };
   },
    created() {
     this.$http
-      .get("http://localhost:3000/professores")
+      .get("http://localhost:3000/alunos")
       .then(res => res.json())
-      .then(professores => (this.professores = professores));
+      .then(alunos => {
+        this.alunos = alunos,
+        this.carregarProfessores();
+      });
   },
   props: {},
+  methods: {
+    pegarQtdAlunosPorProfessor() {
+      this.professores.forEach((professor, index) => {
+        professor = {
+          id: professor.id,
+          nome: professor.nome,
+          qtdAlunos: this.alunos.filter(aluno => 
+            aluno.professor.id == professor.id
+          ).length
+        }
+        this.professores[index] = professor;
+      });
+    },
+    carregarProfessores() {
+      this.$http
+        .get("http://localhost:3000/professores")
+        .then(res => res.json())
+        .then(professores => {
+          this.professores = professores;
+          this.pegarQtdAlunosPorProfessor();
+        });
+    }
+  },
 };
 </script>
 
