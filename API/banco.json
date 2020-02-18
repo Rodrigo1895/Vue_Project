@@ -43,22 +43,14 @@
       }
     },
     {
-      "nome": "Alex",
-      "sobrenome": "",
-      "professor": {
-        "id": 3,
-        "nome": "Luna"
-      },
-      "id": 4
-    },
-    {
-      "nome": "Beth",
-      "sobrenome": "",
+      "id": 4,
+      "nome": "Alexandre",
+      "sobrenome": "Silva",
+      "dataNasc": "10/10/1990",
       "professor": {
         "id": 2,
         "nome": "Paula"
-      },
-      "id": 5
+      }
     }
   ]
 }

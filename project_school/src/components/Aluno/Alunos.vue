@@ -1,6 +1,7 @@
 <template>
   <div>
-    <titulo :texto="professorId != undefined ? 'Professor: ' + professor.nome: 'Todos os Alunos'"></titulo>
+    <titulo :texto="professorId != undefined ? 'Professor: ' + professor.nome: 'Todos os Alunos'" 
+      :btnVoltar="!visualizando"></titulo>
     <div v-if="professorId != undefined">
       <input
         type="text"
@@ -19,11 +20,11 @@
       </thead>
       <tbody v-if="alunos.length">
         <tr v-for="(aluno, index) in alunos" :key="index">
-          <td>{{aluno.id}}</td>
+          <td class="colPequeno">{{aluno.id}}</td>
           <router-link :to="`/alunoDetalhe/${aluno.id}`" tag="td" style="cursor: pointer">
             {{ aluno.nome }} {{ aluno.sobrenome }}
           </router-link>
-          <td>
+          <td class="colPequeno">
             <button class="btn btnDanger" @click="remover(aluno)">
               Remover
             </button>
@@ -130,5 +131,9 @@ input {
   padding: 20px;
   margin: 0px;
   border: 0px;
+}
+.colPequeno {
+  text-align: center;
+  width: 15%;
 }
 </style>
