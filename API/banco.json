@@ -13,12 +13,12 @@
       "nome": "Luna"
     }
   ],
-
   "alunos": [
     {
       "id": 1,
       "nome": "Rodrigo",
       "sobrenome": "Lima",
+      "dataNasc": "18/10/1995",
       "professor": {
         "id": 1,
         "nome": "Vinicius"
@@ -35,12 +35,30 @@
     },
     {
       "id": 3,
-      "nome": "Sueli Lima",
-      "sobrenome": "",
+      "nome": "Sueli",
+      "sobrenome": "Lima",
       "professor": {
         "id": 2,
         "nome": "Paula"
       }
+    },
+    {
+      "nome": "Alex",
+      "sobrenome": "",
+      "professor": {
+        "id": 3,
+        "nome": "Luna"
+      },
+      "id": 4
+    },
+    {
+      "nome": "Beth",
+      "sobrenome": "",
+      "professor": {
+        "id": 2,
+        "nome": "Paula"
+      },
+      "id": 5
     }
   ]
 }
