@@ -49,7 +49,7 @@ namespace ProjectSchool_API.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<Aluno[]> GetAlunosAsyncByProfessorId(int professorId, bool includeProfessor)
+        public async Task<Aluno[]> GetAlunosAsyncByProfessorId(int professorId, bool includeProfessor = false)
         {
             IQueryable<Aluno> query = _context.Alunos;
             if(includeProfessor) {
@@ -64,7 +64,7 @@ namespace ProjectSchool_API.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<Aluno> GetAlunoAsyncById(int alunoId, bool includeProfessor)
+        public async Task<Aluno> GetAlunoAsyncById(int alunoId, bool includeProfessor = false)
         {
             IQueryable<Aluno> query = _context.Alunos;
             if(includeProfessor) {
@@ -80,14 +80,33 @@ namespace ProjectSchool_API.Data
         }
 
         // Professor
-        public Task<Professor[]> GetAllProfessoresAsync(bool includeAluno)
+        public async Task<Professor[]> GetAllProfessoresAsync(bool includeAluno = false)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Professor> query = _context.Professores;
+            if(includeAluno) {
+                query = query.Include(p => p.Alunos);
+            }
+
+            query = query
+                    .AsNoTracking()
+                    .OrderBy(p => p.Id);
+            
+            return await query.ToArrayAsync();
         }
 
-        public Task<Professor> GetProfessorAsyncById(int professorId, bool includeAluno)
+        public async Task<Professor> GetProfessorAsyncById(int professorId, bool includeAluno = false)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Professor> query = _context.Professores;
+            if(includeAluno) {
+                query = query.Include(p => p.Alunos);
+            }
+
+            query = query
+                    .AsNoTracking()
+                    .OrderBy(p => p.Id)
+                    .Where(p => p.Id == professorId);
+            
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

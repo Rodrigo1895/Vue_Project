@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ProjectSchool_API.Data;
 
 namespace ProjectSchool_API
@@ -32,6 +26,10 @@ namespace ProjectSchool_API
             );
 
             services.AddControllers();
+
+            services.AddMvcCore().AddNewtonsoftJson(
+                options => options.SerializerSettings.ReferenceLoopHandling =
+                ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IRepository, Repository>();
         }
