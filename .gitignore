@@ -23,3 +23,5 @@ yarn-error.log*
 # Arquivos dotnet core e ef core
 bin
 obj
+ProjectSchool_API/ProjectSchool.db-shm
+ProjectSchool_API/ProjectSchool.db-wal
